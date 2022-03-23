@@ -18,13 +18,14 @@ class Pokemon{
          console.log('Not enough Magic, cannot launch attack!');
          }   
         else { 
-
             if( pokemon.health <= 0){
-                console.log(`${pokemon.name} is Killed!!!`);
-            } else{
-                console.log(`${pokemon.name} got ${pokemon.skills[indexOfSkill].attackAmount+20} Damage!`);
+                console.log(`${pokemon.name} is already DEAD!!! The winner is: >>> ${this.name}`);
+// >>>>>>   if hero health <= 0 break all casses
             }
-             return pokemon.health -= this.skills[indexOfSkill].attackAmount,' ' &&' ' , this.magic -= this.skills[indexOfSkill].magicAmount
+             else{
+                console.log(`${pokemon.name} got ${this.skills[indexOfSkill].attackAmount} Damage!`)
+            }
+             return pokemon.health -= this.skills[indexOfSkill].attackAmount,' ' && ' ' , this.magic -= this.skills[indexOfSkill].magicAmount 
             }
     }
     magical( addMana ){
@@ -39,28 +40,31 @@ class AttackSkill{
         this.magicAmount = magicAmount
     }
 }
-let pikachu = new Pokemon("Pikatchu", 120, 80)
+
+let pikachu = new Pokemon("Pikachu", 120, 80)
 let bulbasaur = new Pokemon("Bulbasaur", 95, 105)
 
 let lightning = new AttackSkill("lightning", 40, 30);
 let poisonSeed = new AttackSkill ("poison seed", 20, 20);
 
 pikachu.learnAttackSkill(lightning)
+pikachu.attack(0,bulbasaur)
 console.log('-'.repeat(100)+'\n');
 bulbasaur.learnAttackSkill(poisonSeed)
+bulbasaur.attack(0,pikachu)
+console.log('-'.repeat(100)+'\n');
 console.log(pikachu.showStatus());
 console.log('-'.repeat(100)+'\n');
 console.log(bulbasaur.showStatus());
 console.log('-'.repeat(100)+'\n');
 pikachu.learnAttackSkill(lightning)
+pikachu.attack(0,bulbasaur)
 console.log('-'.repeat(100)+'\n');
-pikachu.magical(20)
+pikachu.attack(0,bulbasaur)
+console.log('-'.repeat(100)+'\n');
+pikachu.magical(40) // Fix to 20 !!! why u see ( out of mana!!)
 console.log('-'.repeat(100)+'\n');
 pikachu.learnAttackSkill(lightning)
+pikachu.attack(0,bulbasaur)
 console.log('-'.repeat(100)+'\n');
-pikachu.attack(0, bulbasaur)
-pikachu.attack(0, bulbasaur)
-pikachu.attack(0, bulbasaur)
-pikachu.attack(0, bulbasaur)
-pikachu.magical(20)
-pikachu.attack(0, bulbasaur)
+pikachu.attack(0,bulbasaur)
